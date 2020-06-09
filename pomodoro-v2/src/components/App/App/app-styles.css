@@ -22,3 +22,7 @@ body {
   color: var(--secondaryColor);
   background: var(--primaryColor);
 }
+
+li {
+  list-style-type: none;
+}

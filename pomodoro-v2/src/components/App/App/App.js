@@ -14,7 +14,7 @@ const style = {
   gridTemplateAreas: `
   "title navigation"
   "blank tasklist"
-  "blank tasklist"
+  "clock tasklist"
   "clock tasklist"
   "clock tasklist"
   "taskform totaltime"
@@ -22,10 +22,25 @@ const style = {
   maxHeight: "calc(100vh - 12.03vh)",
 };
 
-const App = (props) => {
+const App = () => {
   return (
     <div class="app" style={style}>
-      <h1 style={{ gridArea: "title" }}>POMODORO</h1>
+      <div
+        style={{ display: "flex", gridArea: "title", justifyContent: "center" }}
+      >
+        <span
+          style={{
+            fontSize: "2.8125rem",
+            fontWeight: "bold",
+            height: "3.4375rem",
+            width: "20.375rem",
+            justifySelf: "center",
+            alignSelf: "center",
+          }}
+        >
+          POMODORO
+        </span>
+      </div>
 
       <div style={{ gridArea: "navigation" }}>
         <Navigation />

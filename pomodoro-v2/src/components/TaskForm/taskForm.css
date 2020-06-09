@@ -1,0 +1,57 @@
+form.taskform {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.taskform input {
+  background: transparent;
+  border: 1px solid var(--secondaryColor);
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.taskform input::placeholder {
+  color: var(--secondaryColor);
+  opacity: 0.7;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input.category {
+  width: 20%;
+  justify-self: flex-start;
+}
+
+.description-container {
+  width: 100%;
+  position: relative;
+}
+
+input.description {
+  justify-self: end;
+  border-radius: 4px 0 0 4px;
+  border-right: none;
+  width: 80%;
+}
+
+.add-button {
+  width: auto;
+  padding: 10px;
+  border-radius: 0 4px 4px 0;
+  border: 1px solid var(--secondaryColor);
+  background: transparent;
+}
+
+.add-button:hover {
+  cursor: pointer;
+}
+
+i {
+  color: var(--secondaryColor);
+}
