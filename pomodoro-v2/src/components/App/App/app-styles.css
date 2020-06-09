@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Teko&display=swap");
+
+/* Will eventually move this into a CreateGlobalStyles Component ****NOT NECESSARY**** */
+:root {
+  --primaryFont: "Montserrat", sans-serif;
+  --secondaryFont: "Teko", sans-serif;
+  --primarySpacing: 0.089rem;
+  --primaryColor: #272f40;
+  --secondaryColor: #dddfe8;
+  --primaryWhite: #ffffff;
+  --primaryGreen: #07c400;
+  --primaryRed: #db4a39;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--primaryFont);
+  letter-spacing: var(--primarySpacing);
+}
