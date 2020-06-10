@@ -58,8 +58,8 @@ const App = () => {
         <TaskForm />
       </div>
 
-      <div style={{ gridArea: "totaltime" }}>
-        Total Time Remaining: 04:20:30
+      <div style={{ gridArea: "totaltime", display: "grid" }}>
+        <div className="total-time">Total Time Remaining: 04:20:30</div>
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React from "react";
+import "./taskList.css";
 
 //for testing
 const demoList = [
@@ -24,7 +25,7 @@ const TaskList = (props) => {
   };
 
   return (
-    <div>
+    <div className="task-list">
       <header>TO-DO</header>
       <div>Category v</div>
       <div className="List">{renderListContents(demoList)}</div>

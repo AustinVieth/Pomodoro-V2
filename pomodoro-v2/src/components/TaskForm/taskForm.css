@@ -8,7 +8,9 @@ form.taskform {
   background: transparent;
   border: 1px solid var(--secondaryColor);
   border-radius: 4px;
-  padding: 10px;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
 }
 
 .taskform input::placeholder {
@@ -29,7 +31,8 @@ input.category {
 }
 
 .description-container {
-  width: 100%;
+  display: flex;
+  width: 70%;
   position: relative;
 }
 
@@ -37,11 +40,11 @@ input.description {
   justify-self: end;
   border-radius: 4px 0 0 4px;
   border-right: none;
-  width: 80%;
+  width: 90%;
 }
 
 .add-button {
-  width: auto;
+  width: 10%;
   padding: 10px;
   border-radius: 0 4px 4px 0;
   border: 1px solid var(--secondaryColor);

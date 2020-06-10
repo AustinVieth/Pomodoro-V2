@@ -26,3 +26,14 @@ body {
 li {
   list-style-type: none;
 }
+
+.total-time {
+  font-size: 1.5rem;
+  border: 1px solid var(--secondaryColor);
+  padding: 10px 15px;
+  text-align: center;
+  border-radius: 4px;
+  align-self: center;
+  justify-self: center;
+  height: fit-content;
+}
