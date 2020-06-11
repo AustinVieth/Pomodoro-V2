@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./navigation.css";
+
 const Navigation = (props) => {
   const ulStyle = {
     padding: "0",
@@ -15,7 +17,7 @@ const Navigation = (props) => {
     fontWeight: "bold",
     fontFamily: "var(--primaryFont)",
     letterSpacing: "var(--primarySpacing)",
-    color: "var(--secondaryColor)",
+    color: "var(--primaryWhite)",
     borderRadius: "50px",
     border: "none",
     display: "flex",
@@ -30,8 +32,12 @@ const Navigation = (props) => {
       <li>
         <button style={buttonStyle}>
           <i
-            style={{ fontSize: "2rem", marginRight: ".75rem" }}
-            class="fab fa-google"
+            style={{
+              fontSize: "2rem",
+              marginRight: ".75rem",
+              color: "var(--primaryWhite)",
+            }}
+            className="fab fa-google"
           ></i>{" "}
           Login with Google
         </button>

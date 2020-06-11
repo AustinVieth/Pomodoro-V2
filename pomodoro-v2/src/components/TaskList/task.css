@@ -1,0 +1,7 @@
+.task-btn {
+  font-size: 1.5rem;
+}
+
+.task-btn:hover {
+  cursor: pointer;
+}

@@ -9,7 +9,7 @@ const TaskForm = (props) => {
         <div className="description-container">
           <input className="description" placeholder="Description"></input>
           <button className="add-button">
-            <i class="fas fa-plus"></i>
+            <i className="fas fa-plus"></i>
           </button>
         </div>
       </form>

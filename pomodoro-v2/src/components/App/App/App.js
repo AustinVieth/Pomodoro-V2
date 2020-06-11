@@ -5,17 +5,14 @@ import Clock from "../../Clock/Clock";
 import TaskForm from "../../TaskForm/TaskForm";
 import Navigation from "../../Navigation/Navigation";
 import TaskList from "../../TaskList/TaskList";
-import { getByDisplayValue } from "@testing-library/react";
 
 const style = {
   display: "grid",
   gridTemplateColumns: "5fr 3fr",
-  gridTemplateRows: "9fr 8fr 8fr 40fr 14fr 21fr",
+  gridTemplateRows: "9fr 8fr 62fr 21fr",
   gridTemplateAreas: `
   "title navigation"
-  "blank tasklist"
-  "clock tasklist"
-  "clock tasklist"
+  "blank header"
   "clock tasklist"
   "taskform totaltime"
   `,
@@ -24,7 +21,7 @@ const style = {
 
 const App = () => {
   return (
-    <div class="app" style={style}>
+    <div className="app" style={style}>
       <div
         style={{ display: "flex", gridArea: "title", justifyContent: "center" }}
       >
@@ -45,6 +42,16 @@ const App = () => {
       <div style={{ gridArea: "navigation" }}>
         <Navigation />
       </div>
+
+      <header
+        style={{
+          gridArea: "header",
+          fontSize: "3.3125rem",
+          textAlign: "center",
+        }}
+      >
+        TO-DO
+      </header>
 
       <div style={{ gridArea: "tasklist" }}>
         <TaskList />{" "}

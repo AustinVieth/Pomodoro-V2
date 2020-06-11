@@ -1,4 +1,15 @@
-header {
-  font-size: 3.3125rem;
+.task-list-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 13.38fr 86.62fr;
+  height: 100%;
+}
+
+.task-list {
+  border: 1px solid var(--secondaryColor);
+  border-radius: 4px;
+}
+
+.category-dropdown {
   text-align: center;
 }
