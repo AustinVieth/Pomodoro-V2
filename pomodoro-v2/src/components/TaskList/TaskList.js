@@ -1,6 +1,7 @@
 import React from "react";
 
 import Task from "./Task";
+import Dropdown from "../DropDown/DropDown";
 import "./taskList.css";
 
 //for testing
@@ -19,6 +20,21 @@ const demoList = [
   },
 ];
 
+const demoItems = [
+  {
+    id: 0,
+    title: "category 1",
+  },
+  {
+    id: 1,
+    title: "category 2",
+  },
+  {
+    id: 2,
+    title: "category 3",
+  },
+];
+
 const TaskList = (props) => {
   // Create Dropdown react component: https://blog.logrocket.com/building-a-custom-dropdown-menu-component-for-react-e94f02ced4a1/
 
@@ -30,7 +46,10 @@ const TaskList = (props) => {
 
   return (
     <div className="task-list-container">
-      <div className="category-dropdown">Category v</div>
+      <div style={{ textAlign: "center" }}>
+        <Dropdown items={demoItems} header="Category" />
+      </div>
+
       <div className="task-list">{renderListContents(demoList)}</div>
     </div>
   );
