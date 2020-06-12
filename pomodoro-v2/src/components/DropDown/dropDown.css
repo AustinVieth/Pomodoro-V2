@@ -43,13 +43,32 @@ i {
 
 .dd-item {
   margin-bottom: 10px;
+  width: 100%;
   transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: space-between;
+}
+
+.title {
+  transition: all 0.2s ease-in-out;
+}
+
+.title:hover {
+  transform: scale(1.2) translateX(20px);
+}
+
+.delete {
+  color: var(--primaryRed);
+}
+
+.delete:hover {
+  transform: scale(1.28);
 }
 
 .dd-item:last-child {
   margin-bottom: 0;
 }
 
-.dd-item:hover {
+/* .dd-item:hover {
   transform: scale(1.2) translateX(20px);
-}
+} */
