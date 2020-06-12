@@ -1,3 +1,55 @@
 .dd-header:hover {
   cursor: pointer;
 }
+
+.dd-header {
+  font-size: 1.25rem;
+  padding: 5px 20px;
+  display: flex;
+  width: fit-content;
+  border: 1px solid var(--secondaryColor);
+  justify-content: space-between;
+  width: 50%;
+  border-radius: 4px;
+}
+
+.dd-wrapper {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  position: relative;
+}
+
+.dd-header:focus {
+  outline: none;
+}
+
+i {
+  font-size: 1.4rem;
+}
+
+.dd-list {
+  position: absolute;
+  border: 1px solid var(--secondaryColor);
+  transform: translateY(20px);
+  text-align: left;
+  padding: 15px;
+  width: 50%;
+  border-radius: 2px;
+  background: var(--primaryColor);
+  border-top: none;
+  transition: all 0.2s ease-out;
+}
+
+.dd-item {
+  margin-bottom: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.dd-item:last-child {
+  margin-bottom: 0;
+}
+
+.dd-item:hover {
+  transform: scale(1.2) translateX(20px);
+}
