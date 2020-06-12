@@ -29,6 +29,7 @@ class DropDown extends React.Component {
     this.setState({
       selected: this.state.items.filter((item) => item.id === itemId)[0].title,
     });
+    this.toggleList();
   };
 
   render() {

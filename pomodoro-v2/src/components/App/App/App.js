@@ -58,7 +58,7 @@ const App = () => {
       </div>
 
       <div style={{ gridArea: "clock" }}>
-        <Clock />
+        <Clock activeTime={20} breakTime={5} />
       </div>
 
       <div style={{ gridArea: "taskform" }}>
