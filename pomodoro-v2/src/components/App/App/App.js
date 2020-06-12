@@ -19,57 +19,65 @@ const style = {
   maxHeight: "calc(100vh - 12.03vh)",
 };
 
-const App = () => {
-  return (
-    <div className="app" style={style}>
-      <div
-        style={{ display: "flex", gridArea: "title", justifyContent: "center" }}
-      >
-        <span
+class App extends React.Component {
+  state = { categories: {} };
+
+  render() {
+    return (
+      <div className="app" style={style}>
+        <div
           style={{
-            fontSize: "2.8125rem",
-            fontWeight: "bold",
-            height: "3.4375rem",
-            width: "20.375rem",
-            justifySelf: "center",
-            alignSelf: "center",
+            display: "flex",
+            gridArea: "title",
+            justifyContent: "center",
           }}
         >
-          POMODORO
-        </span>
-      </div>
+          <span
+            style={{
+              fontSize: "2.8125rem",
+              fontWeight: "bold",
+              height: "3.4375rem",
+              width: "20.375rem",
+              justifySelf: "center",
+              alignSelf: "center",
+            }}
+          >
+            POMODORO
+          </span>
+        </div>
 
-      <div style={{ gridArea: "navigation" }}>
-        <Navigation />
-      </div>
+        <div style={{ gridArea: "navigation" }}>
+          <Navigation />
+        </div>
 
-      <header
-        style={{
-          gridArea: "header",
-          fontSize: "3.3125rem",
-          textAlign: "center",
-        }}
-      >
-        TO-DO
-      </header>
+        <header
+          style={{
+            gridArea: "header",
+            fontSize: "3.3125rem",
+            textAlign: "center",
+          }}
+        >
+          TO-DO
+        </header>
 
-      <div style={{ gridArea: "tasklist" }}>
-        <TaskList />{" "}
-      </div>
+        <div style={{ gridArea: "tasklist" }}>
+          <TaskList />{" "}
+        </div>
 
-      <div style={{ gridArea: "clock" }}>
-        <Clock activeTime={20} breakTime={5} />
-      </div>
+        <div style={{ gridArea: "clock" }}>
+          <Clock activeTime={20} breakTime={5} />
+        </div>
 
-      <div style={{ gridArea: "taskform" }}>
-        <TaskForm />
-      </div>
+        <div style={{ gridArea: "taskform" }}>
+          <TaskForm />
+        </div>
 
-      <div style={{ gridArea: "totaltime", display: "grid" }}>
-        <div className="total-time">Total Time Remaining: 04:20:30</div>
+        <div style={{ gridArea: "totaltime", display: "grid" }}>
+          <div className="total-time">Total Time Remaining: 04:20:30</div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default App;

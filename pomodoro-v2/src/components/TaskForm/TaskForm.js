@@ -1,20 +1,68 @@
 import React from "react";
+import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createCategory } from "../../actions";
+
 import "./taskForm.css";
 
-const TaskForm = (props) => {
-  return (
-    <div className="container">
-      <form className="taskform">
-        <input className="category" placeholder="Category"></input>
-        <div className="description-container">
-          <input className="description" placeholder="Description"></input>
-          <button className="add-button">
-            <i className="fas fa-plus"></i>
-          </button>
-        </div>
-      </form>
-    </div>
-  );
+class TaskForm extends React.Component {
+  renderInput({ input, placeholder, meta, className }) {
+    return (
+      <input
+        className={className}
+        placeholder={placeholder}
+        autoComplete="off"
+        {...input}
+      />
+    );
+  }
+
+  onSubmit = (formValues) => {
+    const { category, description } = formValues;
+
+    if (!Object.keys(this.props.categories).includes(category)) {
+      this.props.createCategory(category, [{ id: 0, description }]);
+    } else {
+      console.log("would update the TaskList");
+    }
+  };
+
+  render() {
+    return (
+      <div className="container">
+        <form
+          className="taskform"
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+        >
+          <Field
+            name="category"
+            className="category"
+            placeholder="Category"
+            component={this.renderInput}
+          ></Field>
+          <div className="description-container">
+            <Field
+              name="description"
+              className="description"
+              placeholder="Description"
+              component={this.renderInput}
+            ></Field>
+            <button className="add-button">
+              <i className="fas fa-plus"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = (state) => {
+  return { categories: state.categories };
 };
 
-export default TaskForm;
+const reduxFormed = reduxForm({
+  form: "categoryCreate",
+})(TaskForm);
+
+export default connect(mapStateToProps, { createCategory })(reduxFormed);
