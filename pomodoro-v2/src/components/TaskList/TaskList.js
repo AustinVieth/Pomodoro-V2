@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 
 import Task from "./Task";
 import Dropdown from "../DropDown/DropDown";
@@ -36,10 +37,8 @@ const demoItems = [
 ];
 
 const TaskList = (props) => {
-  // Create Dropdown react component: https://blog.logrocket.com/building-a-custom-dropdown-menu-component-for-react-e94f02ced4a1/
-
-  const renderListContents = (taskList) => {
-    return taskList.map((task) => {
+  const renderListContents = () => {
+    return props.selected.tasks.map((task) => {
       return <Task key={task.id} task={task} />;
     });
   };
@@ -47,12 +46,19 @@ const TaskList = (props) => {
   return (
     <div className="task-list-container">
       <div style={{ textAlign: "center" }}>
-        <Dropdown items={demoItems} header="Category" />
+        <Dropdown items={props.categories} header="Category" />
       </div>
 
-      <div className="task-list">{renderListContents(demoList)}</div>
+      <div className="task-list">{renderListContents()}</div>
     </div>
   );
 };
 
-export default TaskList;
+const mapStateToProps = (state) => {
+  return {
+    categories: Object.values(state.categories),
+    selected: state.selected,
+  };
+};
+
+export default connect(mapStateToProps)(TaskList);

@@ -44,7 +44,7 @@ class TaskForm extends React.Component {
             <Field
               name="description"
               className="description"
-              placeholder="Description"
+              placeholder="Task"
               component={this.renderInput}
             ></Field>
             <button className="add-button">

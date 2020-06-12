@@ -8,8 +8,11 @@ const Item = (props) => {
   };
 
   return (
-    <li onClick={() => props.selectItem(props.item.id)} className="dd-item">
-      <div className="title">{props.item.title}</div>
+    <li
+      onClick={() => props.selectItem(props.item.category)}
+      className="dd-item"
+    >
+      <div className="title">{props.item.category}</div>
       <div className="delete" style={deleteStyle}>
         <i className="fas fa-trash-alt"></i>
       </div>

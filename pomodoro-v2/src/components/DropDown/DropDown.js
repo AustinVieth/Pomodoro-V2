@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { selectCategory } from "../../actions";
 
 import "./dropDown.css";
 import Item from "./Item";
@@ -6,18 +8,12 @@ import Item from "./Item";
 class DropDown extends React.Component {
   state = {
     isOpen: false,
-    items: [...this.props.items],
-    selection: [],
-    selected: this.props.items[0].title || "Category",
+    selected: this.props.items[0].category || "Category",
   };
 
-  componentDidMount() {
-    // this.setState({ items: [...this.props.items] });
-  }
-
   renderList = () => {
-    return this.state.items.map((item) => {
-      return <Item key={item.id} item={item} selectItem={this.selectItem} />;
+    return this.props.items.map((item, index) => {
+      return <Item key={index} item={item} selectItem={this.selectItem} />;
     });
   };
 
@@ -25,10 +21,8 @@ class DropDown extends React.Component {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
-  selectItem = (itemId) => {
-    this.setState({
-      selected: this.state.items.filter((item) => item.id === itemId)[0].title,
-    });
+  selectItem = (itemName) => {
+    this.props.selectCategory(itemName);
     this.toggleList();
   };
 
@@ -43,7 +37,7 @@ class DropDown extends React.Component {
           className="dd-header"
         >
           <div className="dd-header-title">
-            <div>{this.state.selected}</div>
+            <div>{this.props.selected.category}</div>
           </div>
           <div className="dd-header_action">
             <div>
@@ -61,4 +55,8 @@ class DropDown extends React.Component {
   }
 }
 
-export default DropDown;
+const mapStateToProps = (state) => {
+  return { selected: state.selected };
+};
+
+export default connect(mapStateToProps, { selectCategory })(DropDown);
