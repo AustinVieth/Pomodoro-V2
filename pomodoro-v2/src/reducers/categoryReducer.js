@@ -4,6 +4,7 @@ import {
   CREATE_CATEGORY,
   FETCH_CATEGORIES,
   SELECT_CATEGORY,
+  CREATE_TASK,
 } from "../actions/types";
 
 export default (
@@ -20,6 +21,8 @@ export default (
       return { ...state, [action.payload.category]: action.payload };
     case FETCH_CATEGORIES:
       return;
+    case CREATE_TASK:
+      return { ...state, [action.payload.category]: action.payload };
     default:
       return state;
   }

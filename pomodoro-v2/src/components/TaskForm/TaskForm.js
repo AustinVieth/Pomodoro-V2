@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { connect } from "react-redux";
-import { createCategory } from "../../actions";
+import { createCategory, createTask } from "../../actions";
 
 import "./taskForm.css";
 
@@ -21,9 +21,10 @@ class TaskForm extends React.Component {
     const { category, description } = formValues;
 
     if (!Object.keys(this.props.categories).includes(category)) {
-      this.props.createCategory(category, [{ id: 0, description }]);
+      this.props.createCategory(category);
+      this.props.createTask(category, description);
     } else {
-      console.log("would update the TaskList");
+      this.props.createTask(category, description);
     }
   };
 
@@ -65,4 +66,6 @@ const reduxFormed = reduxForm({
   form: "categoryCreate",
 })(TaskForm);
 
-export default connect(mapStateToProps, { createCategory })(reduxFormed);
+export default connect(mapStateToProps, { createCategory, createTask })(
+  reduxFormed
+);

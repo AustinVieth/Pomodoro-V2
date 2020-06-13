@@ -3,7 +3,7 @@ import { SELECT_CATEGORY } from "../actions/types";
 export default (
   state = {
     category: "Category",
-    tasks: [{ id: 0, description: "Create Your First Task" }],
+    tasks: [{ id: 0, description: "Create Your First Task", pomodoroCount: 1 }],
   },
   action
 ) => {
