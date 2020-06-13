@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
+import { fetchCategories, selectCategory } from "../../actions";
 import Task from "./Task";
 import Dropdown from "../DropDown/DropDown";
 import "./taskList.css";
@@ -37,6 +38,11 @@ const demoItems = [
 ];
 
 const TaskList = (props) => {
+  useEffect(() => {
+    props.fetchCategories();
+    props.selectCategory("Category");
+  }, []);
+
   const renderListContents = () => {
     return props.selected.tasks.map((task) => {
       return <Task key={task.id} task={task} />;
@@ -61,4 +67,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TaskList);
+export default connect(mapStateToProps, { fetchCategories, selectCategory })(
+  TaskList
+);

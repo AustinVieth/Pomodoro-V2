@@ -8,7 +8,6 @@ import Item from "./Item";
 class DropDown extends React.Component {
   state = {
     isOpen: false,
-    selected: this.props.items[0].category || "Category",
   };
 
   renderList = () => {

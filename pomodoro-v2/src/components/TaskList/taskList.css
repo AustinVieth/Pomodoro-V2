@@ -8,6 +8,12 @@
 .task-list {
   border: 1px solid var(--secondaryColor);
   border-radius: 4px;
+  overflow-y: auto;
+  height: 100%;
+  width: 75%;
+  min-width: 420px;
+  max-height: 422px;
+  margin: auto;
 }
 
 .category-dropdown {

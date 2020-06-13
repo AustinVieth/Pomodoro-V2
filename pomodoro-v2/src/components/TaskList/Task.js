@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { deleteTask } from "../../actions";
+
 import "./task.css";
 
 const taskStyle = {
@@ -47,10 +50,14 @@ const Task = (props) => {
           style={optionsStyle}
           className="fas fa-ellipsis-h task-btn options"
         ></i>
-        <i style={optionsStyle} className="fas fa-trash-alt task-btn"></i>
+        <i
+          onClick={() => props.deleteTask(props.task.id)}
+          style={optionsStyle}
+          className="fas fa-trash-alt task-btn"
+        ></i>
       </div>
     </div>
   );
 };
 
-export default Task;
+export default connect(null, { deleteTask })(Task);

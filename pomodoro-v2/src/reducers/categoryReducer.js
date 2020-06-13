@@ -5,6 +5,7 @@ import {
   FETCH_CATEGORIES,
   SELECT_CATEGORY,
   CREATE_TASK,
+  DELETE_TASK,
 } from "../actions/types";
 
 export default (
@@ -20,8 +21,10 @@ export default (
     case CREATE_CATEGORY:
       return { ...state, [action.payload.category]: action.payload };
     case FETCH_CATEGORIES:
-      return;
+      return { ...state, ...action.payload };
     case CREATE_TASK:
+      return { ...state, [action.payload.category]: action.payload };
+    case DELETE_TASK:
       return { ...state, [action.payload.category]: action.payload };
     default:
       return state;
