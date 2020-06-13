@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { deleteCategory, selectCategory } from "../../actions";
 
 const Item = (props) => {
   const deleteStyle = {
@@ -7,17 +9,34 @@ const Item = (props) => {
     transition: "all 0.2s ease-in-out",
   };
 
+  const deleteItem = () => {
+    if (props.categories.length === 1) {
+      alert(
+        "You cannot delete your only category, Please add another category before deleting."
+      );
+      return;
+    }
+
+    props.deleteCategory(props.item.category);
+  };
+
   return (
-    <li
-      onClick={() => props.selectItem(props.item.category)}
-      className="dd-item"
-    >
-      <div className="title">{props.item.category}</div>
-      <div className="delete" style={deleteStyle}>
+    <li className="dd-item">
+      <div
+        onClick={() => props.selectItem(props.item.category)}
+        className="title"
+      >
+        {props.item.category}
+      </div>
+      <div onClick={deleteItem} className="delete" style={deleteStyle}>
         <i className="fas fa-trash-alt"></i>
       </div>
     </li>
   );
 };
 
-export default Item;
+const mapStateToProps = (state) => {
+  return { categories: Object.values(state.categories) };
+};
+
+export default connect(mapStateToProps, { deleteCategory })(Item);

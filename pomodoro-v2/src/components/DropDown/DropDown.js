@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { selectCategory } from "../../actions";
+import { selectCategory, createCategory } from "../../actions";
 
 import "./dropDown.css";
 import Item from "./Item";
@@ -9,6 +9,12 @@ class DropDown extends React.Component {
   state = {
     isOpen: false,
   };
+
+  componentDidUpdate() {
+    if (!this.props.categoriesObj[this.props.selected.category]) {
+      this.props.selectCategory(this.props.categories[0].category);
+    }
+  }
 
   renderList = () => {
     return this.props.items.map((item, index) => {
@@ -55,7 +61,13 @@ class DropDown extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { selected: state.selected };
+  return {
+    selected: state.selected,
+    categoriesObj: state.categories,
+    categories: Object.values(state.categories),
+  };
 };
 
-export default connect(mapStateToProps, { selectCategory })(DropDown);
+export default connect(mapStateToProps, { selectCategory, createCategory })(
+  DropDown
+);

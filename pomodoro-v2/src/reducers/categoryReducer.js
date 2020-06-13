@@ -6,6 +6,7 @@ import {
   SELECT_CATEGORY,
   CREATE_TASK,
   DELETE_TASK,
+  DELETE_CATEGORY,
 } from "../actions/types";
 
 export default (
@@ -26,6 +27,8 @@ export default (
       return { ...state, [action.payload.category]: action.payload };
     case DELETE_TASK:
       return { ...state, [action.payload.category]: action.payload };
+    case DELETE_CATEGORY:
+      return _.omit(state, action.payload);
     default:
       return state;
   }

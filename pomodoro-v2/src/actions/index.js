@@ -1,3 +1,6 @@
+import md5 from "md5";
+import _ from "lodash";
+
 import {
   CREATE_CATEGORY,
   FETCH_CATEGORY,
@@ -6,9 +9,8 @@ import {
   UPDATE_TASK,
   DELETE_TASK,
   FETCH_CATEGORIES,
+  DELETE_CATEGORY,
 } from "./types";
-
-import md5 from "md5";
 
 export const createCategory = (category) => async (dispatch) => {
   dispatch({
@@ -47,6 +49,16 @@ export const fetchCategories = () => async (dispatch, getState) => {
   dispatch({
     type: FETCH_CATEGORIES,
     payload: categories,
+  });
+};
+
+export const deleteCategory = (categoryName) => (dispatch, getState) => {
+  //normally would make an API call here to DELETE a specific category
+  // axios.delete('/categories/categoryName');
+
+  dispatch({
+    type: DELETE_CATEGORY,
+    payload: categoryName,
   });
 };
 
