@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { deleteTask } from "../../actions";
+import { deleteTask, updateTask } from "../../actions";
 
 import "./task.css";
+import { update } from "lodash";
 
 const taskStyle = {
   padding: "10px",
@@ -37,13 +38,35 @@ const descriptionStyle = {
 };
 
 const Task = (props) => {
+  useEffect(() => {
+    console.log("re-rendered");
+  });
+
+  const updatePomodoroCount = (change) => {
+    let newCount = props.task.pomodoroCount;
+    if (change === "increase") {
+      newCount += 1;
+    } else if (change === "decrease") {
+      newCount -= 1;
+    }
+    console.log("clicked");
+
+    props.updateTask(props.task.id, newCount);
+  };
+
   return (
     <div style={taskStyle}>
       <div style={descriptionStyle}>{props.task.description}</div>
       <div style={counterStyle}>
-        <i className="fas fa-minus task-btn"></i>
+        <i
+          onClick={() => updatePomodoroCount("decrease")}
+          className="fas fa-minus task-btn"
+        ></i>
         <div>{props.task.pomodoroCount}</div>
-        <i className="fas fa-plus task-btn"></i>
+        <i
+          onClick={() => updatePomodoroCount("increase")}
+          className="fas fa-plus task-btn"
+        ></i>
       </div>
       <div style={buttonStyle}>
         <i
@@ -60,4 +83,8 @@ const Task = (props) => {
   );
 };
 
-export default connect(null, { deleteTask })(Task);
+const mapStateToProps = (state) => {
+  return { selected: state.selected };
+};
+
+export default connect(mapStateToProps, { deleteTask, updateTask })(Task);

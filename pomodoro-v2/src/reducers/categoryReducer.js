@@ -7,13 +7,16 @@ import {
   CREATE_TASK,
   DELETE_TASK,
   DELETE_CATEGORY,
+  UPDATE_TASK,
 } from "../actions/types";
 
 export default (
   state = {
     Category: {
       category: "Category",
-      tasks: [{ id: "0", description: "Create Your First Task" }],
+      tasks: [
+        { id: "0", description: "Create Your First Task", pomodoroCount: 1 },
+      ],
     },
   },
   action

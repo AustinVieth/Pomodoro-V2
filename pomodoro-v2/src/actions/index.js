@@ -87,3 +87,20 @@ export const deleteTask = (taskId) => (dispatch, getState) => {
     payload: category,
   });
 };
+
+export const updateTask = (taskId, pomodoroCount) => (dispatch, getState) => {
+  if (pomodoroCount < 0) {
+    pomodoroCount = 0;
+  }
+
+  //normally would be a patch request
+
+  let category = getState().selected;
+  let task = category.tasks.find(({ id }) => id === taskId);
+  task.pomodoroCount = pomodoroCount;
+
+  dispatch({
+    type: UPDATE_TASK,
+    payload: { ...category },
+  });
+};
