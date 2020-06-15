@@ -1,46 +1,50 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { deleteTask, updateTask } from "../../actions";
+import { deleteTask, updateTask, selectTask } from "../../actions";
 
 import "./task.css";
-import { update } from "lodash";
-
-const taskStyle = {
-  padding: "10px",
-  display: "grid",
-  fontSize: "1.25rem",
-  borderBottom: "1px solid var(--secondaryColor)",
-  alignItems: "baseline",
-  justifyContent: "space-between",
-  gridTemplateColumns: "6fr 2fr 2fr",
-  gridTemplateRows: "1fr",
-};
-
-const counterStyle = {
-  display: "flex",
-  justifyContent: "space-around",
-  alignSelf: "center",
-};
-
-const buttonStyle = {
-  display: "flex",
-  justifyContent: "flex-end",
-  alignSelf: "center",
-};
-
-const optionsStyle = {
-  margin: "10px",
-};
-
-const descriptionStyle = {
-  display: "flex",
-  alignSelf: "center",
-};
 
 const Task = (props) => {
   useEffect(() => {
     console.log("re-rendered");
   });
+
+  const isSelected = () => {
+    return props.task.id === props.selectedTask.id;
+  };
+
+  const taskStyle = {
+    padding: "10px",
+    display: "grid",
+    fontSize: "1.25rem",
+    borderBottom: "1px solid var(--secondaryColor)",
+    alignItems: "baseline",
+    justifyContent: "space-between",
+    gridTemplateColumns: "6fr 2fr 2fr",
+    gridTemplateRows: "1fr",
+    background: isSelected() ? "var(--activeColor)" : "var(--primaryColor)",
+  };
+
+  const counterStyle = {
+    display: "flex",
+    justifyContent: "space-around",
+    alignSelf: "center",
+  };
+
+  const buttonStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignSelf: "center",
+  };
+
+  const optionsStyle = {
+    margin: "10px",
+  };
+
+  const descriptionStyle = {
+    display: "flex",
+    alignSelf: "center",
+  };
 
   const updatePomodoroCount = (change) => {
     let newCount = props.task.pomodoroCount;
@@ -54,9 +58,15 @@ const Task = (props) => {
     props.updateTask(props.task.id, newCount);
   };
 
+  const setTask = () => {
+    props.selectTask(props.task.id);
+  };
+
   return (
     <div style={taskStyle}>
-      <div style={descriptionStyle}>{props.task.description}</div>
+      <div class="description" onClick={setTask} style={descriptionStyle}>
+        {props.task.description}
+      </div>
       <div style={counterStyle}>
         <i
           onClick={() => updatePomodoroCount("decrease")}
@@ -84,7 +94,9 @@ const Task = (props) => {
 };
 
 const mapStateToProps = (state) => {
-  return { selected: state.selected };
+  return { selected: state.selected, selectedTask: state.selectedTask };
 };
 
-export default connect(mapStateToProps, { deleteTask, updateTask })(Task);
+export default connect(mapStateToProps, { deleteTask, updateTask, selectTask })(
+  Task
+);

@@ -5,7 +5,8 @@
   --primaryFont: "Montserrat", sans-serif;
   --secondaryFont: "Teko", sans-serif;
   --primarySpacing: 0.089rem;
-  --primaryColor: #272f40;
+  --primaryColor: #272f3f;
+  --activeColor: #404e68;
   --secondaryColor: #dddfe8;
   --primaryWhite: #ffffff;
   --primaryGreen: #07c400;

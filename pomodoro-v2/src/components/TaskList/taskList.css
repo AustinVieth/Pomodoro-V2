@@ -19,3 +19,11 @@
 .category-dropdown {
   text-align: center;
 }
+
+.active {
+  color: var(--activeColor);
+}
+
+.description:hover {
+  cursor: pointer;
+}

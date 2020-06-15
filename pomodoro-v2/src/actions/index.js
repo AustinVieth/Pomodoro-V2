@@ -10,6 +10,7 @@ import {
   DELETE_TASK,
   FETCH_CATEGORIES,
   DELETE_CATEGORY,
+  SELECT_TASK,
 } from "./types";
 
 export const createCategory = (category) => async (dispatch) => {
@@ -106,5 +107,16 @@ export const updateTask = (taskId, pomodoroCount) => (dispatch, getState) => {
   dispatch({
     type: UPDATE_TASK,
     payload: { ...category },
+  });
+};
+
+export const selectTask = (taskId) => (dispatch, getState) => {
+  //normally would be a get request
+  let category = getState().selected;
+  let task = category.tasks.find(({ id }) => id === taskId);
+
+  dispatch({
+    type: SELECT_TASK,
+    payload: task,
   });
 };
