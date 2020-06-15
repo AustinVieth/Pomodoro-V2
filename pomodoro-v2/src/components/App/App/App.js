@@ -65,7 +65,7 @@ class App extends React.Component {
         </div>
 
         <div style={{ gridArea: "clock" }}>
-          <Clock activeTime={20} breakTime={5} />
+          <Clock activeTime={0.1} breakTime={0.05} />
         </div>
 
         <div style={{ gridArea: "taskform" }}>

@@ -1,5 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+
 import "./clock.css";
+import { updateTask } from "../../actions";
 
 class Clock extends React.Component {
   state = {
@@ -62,7 +65,12 @@ class Clock extends React.Component {
 
   componentDidUpdate() {
     if (this.state.timeRemaining <= 0) {
-      this.stopTimer();
+      if (!this.state.isBreak) {
+        const { id, pomodoroCount } = this.props.selectedTask;
+        this.props.updateTask(id, pomodoroCount - 1);
+      }
+      this.state.isBreak = !this.state.isBreak;
+      this.resetTimer();
     }
   }
 
@@ -128,4 +136,8 @@ class Clock extends React.Component {
   }
 }
 
-export default Clock;
+const mapStateToProps = (state) => {
+  return { selectedTask: state.selectedTask };
+};
+
+export default connect(mapStateToProps, { updateTask })(Clock);
