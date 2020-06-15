@@ -6,37 +6,6 @@ import Task from "./Task";
 import Dropdown from "../DropDown/DropDown";
 import "./taskList.css";
 
-//for testing
-const demoList = [
-  {
-    category: "Software",
-    description: "Practice DataStructures and Algorithms",
-    pomodoroCount: 3,
-    id: "asdfhjkue1234as",
-  },
-  {
-    category: "Babe",
-    description: "Relaxtion Time",
-    pomodoroCount: 5,
-    id: "hui283940hfdklas8i9r",
-  },
-];
-
-const demoItems = [
-  {
-    id: 0,
-    title: "category 1",
-  },
-  {
-    id: 1,
-    title: "category 2",
-  },
-  {
-    id: 2,
-    title: "category 3",
-  },
-];
-
 const TaskList = (props) => {
   useEffect(() => {
     props.fetchCategories();

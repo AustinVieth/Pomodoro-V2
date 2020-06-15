@@ -10,3 +10,6 @@ export const DELETE_TASK = "DELETE_TASK";
 export const SELECT_TASK = "SELECT_TASK";
 
 export const UPDATE_SETTINGS = "UPDATE_SETTINGS";
+
+export const SIGN_IN = "SIGN_IN";
+export const SIGN_OUT = "SIGN_OUT";

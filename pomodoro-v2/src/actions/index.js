@@ -12,6 +12,8 @@ import {
   DELETE_CATEGORY,
   SELECT_TASK,
   UPDATE_SETTINGS,
+  SIGN_IN,
+  SIGN_OUT,
 } from "./types";
 
 export const createCategory = (category) => async (dispatch) => {
@@ -135,4 +137,17 @@ export const updateSettings = (settings) => (dispatch, getState) => {
     type: UPDATE_SETTINGS,
     payload: { ...oldSettings, ...settings },
   });
+};
+
+export const signIn = (userId) => {
+  return {
+    type: SIGN_IN,
+    payload: userId,
+  };
+};
+
+export const signOut = () => {
+  return {
+    type: SIGN_OUT,
+  };
 };

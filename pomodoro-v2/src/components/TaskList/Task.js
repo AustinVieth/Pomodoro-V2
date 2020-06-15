@@ -50,7 +50,6 @@ const Task = (props) => {
     } else if (change === "decrease") {
       newCount -= 1;
     }
-    console.log("clicked");
 
     props.updateTask(props.task.id, newCount);
   };
