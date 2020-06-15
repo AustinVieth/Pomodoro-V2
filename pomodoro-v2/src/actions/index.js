@@ -67,7 +67,11 @@ export const createTask = (categoryName, taskName) => (dispatch, getState) => {
   let category = getState().categories[categoryName];
   const id = md5(taskName);
 
-  category.tasks.push({ id, description: taskName, pomodoroCount: 1 });
+  if (
+    category.tasks.findIndex(({ id: currentId }) => currentId === id) === -1
+  ) {
+    category.tasks.push({ id, description: taskName, pomodoroCount: 1 });
+  }
 
   dispatch({
     type: CREATE_TASK,
