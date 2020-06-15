@@ -7,15 +7,25 @@ import { updateTask } from "../../actions";
 class Clock extends React.Component {
   state = {
     isBreak: false,
-    breakTime: this.props.breakTime * 60,
-    activeTime: this.props.activeTime * 60,
+    breakTime: this.props.settings.breakTime * 60,
+    activeTime: this.props.settings.activeTime * 60,
     timeRemaining: 0,
     isCounting: false,
   };
 
   startTimer() {
-    this.myInterval = setInterval(() => {
+    this.myInterval = setInterval(async () => {
       this.setState({ timeRemaining: this.state.timeRemaining - 1 });
+      if (this.state.timeRemaining <= 0) {
+        if (!this.state.isBreak && this.props.selectedTask.pomodoroCount) {
+          const { id, pomodoroCount } = this.props.selectedTask;
+          this.props.updateTask(id, pomodoroCount - 1);
+        }
+        console.log(`isBreak: ${this.state.isBreak}`);
+        await this.setState({ isBreak: !this.state.isBreak });
+        console.log(`isBreak: ${this.state.isBreak}`);
+        this.resetTimer();
+      }
     }, 1000);
 
     this.setState({ isCounting: true });
@@ -61,17 +71,6 @@ class Clock extends React.Component {
 
   componentDidMount() {
     this.setTime();
-  }
-
-  componentDidUpdate() {
-    if (this.state.timeRemaining <= 0) {
-      if (!this.state.isBreak) {
-        const { id, pomodoroCount } = this.props.selectedTask;
-        this.props.updateTask(id, pomodoroCount - 1);
-      }
-      this.state.isBreak = !this.state.isBreak;
-      this.resetTimer();
-    }
   }
 
   containerStyle = {
@@ -137,7 +136,7 @@ class Clock extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { selectedTask: state.selectedTask };
+  return { selectedTask: state.selectedTask, settings: state.settings };
 };
 
 export default connect(mapStateToProps, { updateTask })(Clock);

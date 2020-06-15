@@ -11,6 +11,7 @@ import {
   FETCH_CATEGORIES,
   DELETE_CATEGORY,
   SELECT_TASK,
+  UPDATE_SETTINGS,
 } from "./types";
 
 export const createCategory = (category) => async (dispatch) => {
@@ -83,6 +84,7 @@ export const createTask = (categoryName, taskName) => (dispatch, getState) => {
 export const deleteTask = (taskId) => (dispatch, getState) => {
   //normally this would be a patch request
   const category = getState().selected;
+
   category.tasks = category.tasks.filter(({ id }) => {
     return id !== taskId;
   });
@@ -114,9 +116,23 @@ export const selectTask = (taskId) => (dispatch, getState) => {
   //normally would be a get request
   let category = getState().selected;
   let task = category.tasks.find(({ id }) => id === taskId);
+  if (!task) {
+    task = {};
+  }
 
   dispatch({
     type: SELECT_TASK,
     payload: task,
+  });
+};
+
+export const updateSettings = (settings) => (dispatch, getState) => {
+  //you would lookup the current user and then return the current users settings + the new settings object but for now, just returning the old settings obj + new settings obj
+
+  const oldSettings = getState().settings;
+
+  dispatch({
+    type: UPDATE_SETTINGS,
+    payload: { ...oldSettings, ...settings },
   });
 };

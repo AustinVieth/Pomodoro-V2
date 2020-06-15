@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { deleteCategory, selectCategory } from "../../actions";
+import { deleteCategory } from "../../actions";
 
 const Item = (props) => {
   const deleteStyle = {

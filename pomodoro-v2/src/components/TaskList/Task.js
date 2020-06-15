@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { deleteTask, updateTask, selectTask } from "../../actions";
 
 import "./task.css";
 
 const Task = (props) => {
-  useEffect(() => {
-    console.log("re-rendered");
-  });
-
   const isSelected = () => {
     return props.task.id === props.selectedTask.id;
   };
@@ -44,6 +40,7 @@ const Task = (props) => {
   const descriptionStyle = {
     display: "flex",
     alignSelf: "center",
+    textDecoration: props.task.pomodoroCount <= 0 ? "line-through" : "none",
   };
 
   const updatePomodoroCount = (change) => {
@@ -62,9 +59,21 @@ const Task = (props) => {
     props.selectTask(props.task.id);
   };
 
+  const deleteTask = () => {
+    props.deleteTask(props.task.id);
+    if (props.selectedTask === props.task) {
+      if (props.selected.tasks.length > 0) {
+        props.selectTask(props.selected.tasks[0].id);
+      } else {
+        //because the selectTask action creator has logic to check if it's a valid Id,passing no argument sets the selected task to a blank object
+        props.selectTask();
+      }
+    }
+  };
+
   return (
     <div style={taskStyle}>
-      <div class="description" onClick={setTask} style={descriptionStyle}>
+      <div className="description" onClick={setTask} style={descriptionStyle}>
         {props.task.description}
       </div>
       <div style={counterStyle}>
@@ -84,7 +93,7 @@ const Task = (props) => {
           className="fas fa-ellipsis-h task-btn options"
         ></i>
         <i
-          onClick={() => props.deleteTask(props.task.id)}
+          onClick={deleteTask}
           style={optionsStyle}
           className="fas fa-trash-alt task-btn"
         ></i>
