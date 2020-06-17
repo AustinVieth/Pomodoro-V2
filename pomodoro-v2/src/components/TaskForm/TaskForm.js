@@ -20,12 +20,26 @@ class TaskForm extends React.Component {
   onSubmit = (formValues) => {
     const { category, description } = formValues;
 
+    if (!this.isValid(formValues)) {
+      return;
+    }
+
     if (!Object.keys(this.props.categories).includes(category)) {
       this.props.createCategory(category);
       this.props.createTask(category, description);
     } else {
       this.props.createTask(category, description);
     }
+  };
+
+  isValid = ({ category, description }) => {
+    console.log(category, description);
+    //Still need to implement visual queues for validation.
+    if (category === undefined || description === undefined) {
+      return false;
+    }
+
+    return true;
   };
 
   render() {

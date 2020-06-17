@@ -36,6 +36,10 @@ input.category {
   position: relative;
 }
 
+.taskform .description:hover {
+  cursor: text;
+}
+
 input.description {
   justify-self: end;
   border-radius: 4px 0 0 4px;
@@ -52,7 +56,7 @@ input.description {
 }
 
 .add-button:hover {
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 i {
